@@ -1,11 +1,11 @@
-import { GET_ALL_CARS } from "./queries";
+import { GET_ALL_PRODUCTS } from "./queries";
 import { apolloClient } from "./../../graphql";
 import { GetProducts_products } from "./__generated__/GetProducts";
 
-class CarService {
+class ProductService {
   public async GetProducts(): Promise<GetProducts_products[]> {
     const response = await apolloClient
-      .query({ query: GET_ALL_CARS })
+      .query({ query: GET_ALL_PRODUCTS })
       .catch((err) => {
         throw err;
       });
@@ -17,4 +17,4 @@ class CarService {
   }
 }
 
-export default new CarService();
+export default new ProductService();

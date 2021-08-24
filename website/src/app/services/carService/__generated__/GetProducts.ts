@@ -19,6 +19,6 @@ export interface GetProducts_products {
   thumbnailUrl: string;
 }
 
-export interface GetCars {
-  cars: GetProducts_products[];
+export interface GetProducts {
+  products: GetProducts_products[];
 }

@@ -7,7 +7,7 @@ import "@brainhubeu/react-carousel/lib/style.css";
 import { useMediaQuery } from "react-responsive";
 import { SCREENS } from "../../components/responsive";
 import carService from "../../services/carService";
-import { GetProducts_products } from "../../services/carService/__generated__/GetCars";
+import { GetProducts_products } from "../../services/carService/__generated__/GetProducts";
 import { setTopProducts } from "./slice";
 import { createSelector, Dispatch } from "@reduxjs/toolkit";
 import { useDispatch, useSelector } from "react-redux";

@@ -1,0 +1,17 @@
+{
+  // These tasks will run in order when initializing your CodeSandbox project.
+  "setupTasks": [],
+
+  // These tasks can be run from CodeSandbox. Running one will open a log in the app.
+  "tasks": {
+    "yarn --cwd website/": {
+      "name": "yarn --cwd website/",
+      "command": "yarn --cwd website/",
+      "runAtStart": true
+    },
+    "yarn --cwd website/ start": {
+      "name": "yarn --cwd website/ start",
+      "command": "yarn --cwd website/ start"
+    }
+  }
+}

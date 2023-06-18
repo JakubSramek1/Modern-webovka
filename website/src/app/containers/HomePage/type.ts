@@ -1,4 +1,4 @@
-import { GetProducts_products } from "../../services/carService/__generated__/GetProducts";
+import { GetProducts_products } from "../../service/productService/__generated__/GetProducts";
 export interface IHomePageState {
-  topCars: GetProducts_products[];
+  topProducts: GetProducts_products[];
 }

@@ -1,5 +1,5 @@
 import { GET_ALL_PRODUCTS } from "./queries";
-import { apolloClient } from "./../../graphql";
+import { apolloClient } from "../../graphql";
 import { GetProducts_products } from "./__generated__/GetProducts";
 
 class ProductService {
@@ -10,8 +10,8 @@ class ProductService {
         throw err;
       });
 
-    if (response && response.data && response.data.cars)
-      return response.data.cars as GetProducts_products[];
+    if (response && response.data && response.data.products)
+      return response.data.products as GetProducts_products[];
 
     return [];
   }

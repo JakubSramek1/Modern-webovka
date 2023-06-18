@@ -6,10 +6,6 @@ export const GET_ALL_PRODUCTS = gql`
       id
       name
       monthlyPrice
-      dailyPrice
-      gearType
-      gas
-      mileage
       thumbnailUrl
     }
   }

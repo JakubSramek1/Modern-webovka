@@ -8,15 +8,10 @@
 // ====================================================
 
 export interface GetProducts_products {
-  __typename: "Car";
+  __typename: "Product";
   id: string;
   name: string;
   monthlyPrice: number;
-  dailyPrice: number;
-  gearType: string;
-  gas: string;
-  mileage: string;
-  thumbnailUrl: string;
 }
 
 export interface GetProducts {

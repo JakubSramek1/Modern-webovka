@@ -1,20 +1,20 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import tw from "twin.macro";
-import { Car } from "../../components/product/index";
+import { Product } from "../../components/product/index";
 import Carousel, { Dots, slidesToShowPlugin } from "@brainhubeu/react-carousel";
 import "@brainhubeu/react-carousel/lib/style.css";
 import { useMediaQuery } from "react-responsive";
 import { SCREENS } from "../../components/responsive";
-import carService from "../../services/carService";
-import { GetProducts_products } from "../../services/carService/__generated__/GetProducts";
+import productService from "../../service/productService";
+import { GetProducts_products } from "../../service/productService/__generated__/GetProducts";
 import { setTopProducts } from "./slice";
 import { createSelector, Dispatch } from "@reduxjs/toolkit";
 import { useDispatch, useSelector } from "react-redux";
 import { makeSelectTopProducts } from "./selectors";
 import MoonLoader from "react-spinners/MoonLoader";
 
-const TopCarsContainer = styled.div`
+const TopProductsContainer = styled.div`
   ${tw`
     max-w-screen-lg 
     w-full 
@@ -38,7 +38,7 @@ const Title = styled.h2`
   `}
 `;
 
-const CarsContainer = styled.div`
+const ProductsContainer = styled.div`
   ${tw`
   w-full 
   flex 
@@ -49,7 +49,7 @@ const CarsContainer = styled.div`
   `}
 `;
 
-const EmptyCars = styled.div`
+const EmptyProducts = styled.div`
   ${tw`
   w-full
   flex 
@@ -72,52 +72,53 @@ const LoadingContainer = styled.div`
 `;
 
 const actionDispatch = (dispatch: Dispatch) => ({
-  setTopProducts: (cars: GetProducts_products[]) =>
-    dispatch(setTopProducts(cars)),
+  setTopProducts: (products: GetProducts_products[]) =>
+    dispatch(setTopProducts(products)),
 });
 
-const stateSelector = createSelector(makeSelectTopProducts, (topCars) => ({
-  topCars,
+const stateSelector = createSelector(makeSelectTopProducts, (topProducts) => ({
+  topProducts,
 }));
 
-export function TopCars() {
+export function TopProducts() {
   const [current, setCurrent] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const isMobile = useMediaQuery({ maxWidth: SCREENS.sm });
 
-  const { topCars } = useSelector(stateSelector);
-
+  const { topProducts } = useSelector(stateSelector);
   const { setTopProducts } = actionDispatch(useDispatch());
 
-  const fetchTopCars = async () => {
+  const fetchTopProducts = async () => {
     setIsLoading(true);
 
-    const cars = await carService.GetProducts().catch((err) => {
+    const products = await productService.GetProducts().catch((err) => {
       console.log("Error:", err);
     });
 
-    console.log("Cars: ", cars);
-    if (cars) setTopProducts(cars);
+    console.log("Products: ", products);
+    if (products) setTopProducts(products);
     setIsLoading(false);
   };
 
   useEffect(() => {
-    fetchTopCars();
+    fetchTopProducts();
   }, []);
 
-  const isEmptyTopCars = !topCars || topCars.length === 0;
+  const isEmptyTopProducts = !topProducts || topProducts.length === 0;
 
-  const cars =
-    (!isEmptyTopCars &&
-      topCars.map((car) => <Car {...car} thumbnailSrc={car.thumbnailUrl} />)) ||
+  const products =
+    (!isEmptyTopProducts &&
+      topProducts.map((product: any) => (
+        <Product {...product} thumbnailSrc={product.thumbnailUrl} />
+      ))) ||
     [];
 
   const numberOfDots = isMobile
-    ? cars.length
-    : Math.floor(parseInt(String(cars.length / 3)));
+    ? products.length
+    : Math.floor(parseInt(String(products.length / 3)));
 
   return (
-    <TopCarsContainer>
+    <TopProductsContainer>
       <Title>Objevte naše nejlepší produkty</Title>
       {isLoading && (
         <LoadingContainer>
@@ -125,13 +126,15 @@ export function TopCars() {
         </LoadingContainer>
       )}
 
-      {isEmptyTopCars && !isLoading && <EmptyCars>No Cars To Show!</EmptyCars>}
-      {!isEmptyTopCars && !isLoading && (
-        <CarsContainer>
+      {isEmptyTopProducts && !isLoading && (
+        <EmptyProducts>No Products To Show!</EmptyProducts>
+      )}
+      {!isEmptyTopProducts && !isLoading && (
+        <ProductsContainer>
           <Carousel
             value={current}
             onChange={setCurrent}
-            slides={cars}
+            slides={products}
             plugins={[
               "clickToChange",
               {
@@ -165,8 +168,8 @@ export function TopCars() {
             }}
           />
           <Dots value={current} onChange={setCurrent} number={numberOfDots} />
-        </CarsContainer>
+        </ProductsContainer>
       )}
-    </TopCarsContainer>
+    </TopProductsContainer>
   );
 }

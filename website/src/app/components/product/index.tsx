@@ -2,12 +2,6 @@ import styled from "styled-components";
 import tw from "twin.macro";
 import { IHoney } from "../../../typings/honey";
 import { Button } from "../button/index";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faFillDrip,
-  faTree,
-  faWeightHanging,
-} from "@fortawesome/free-solid-svg-icons";
 
 interface IHoneyProps extends IHoney {}
 
@@ -126,8 +120,8 @@ const BuyButton = styled(Button)`
   `}
 `;
 
-export function Car(props: IHoneyProps) {
-  const { name, thumbnailSrc, mileage, gearType, dailyPrice, gas } = props;
+export function Product(props: IHoneyProps) {
+  const { name, thumbnailSrc, monthlyPrice } = props;
   return (
     <ProductContainer>
       <ProductName>{name}</ProductName>
@@ -136,32 +130,11 @@ export function Car(props: IHoneyProps) {
       </ProductThumbnail>
       <PricesContainer>
         <ProductPrice>
-          {dailyPrice} <SmallText>kč</SmallText>
+          {monthlyPrice} <SmallText>kč</SmallText>
         </ProductPrice>
       </PricesContainer>
       <Separator />
-      <ProductDetailContainer>
-        <ProductDetail>
-          <SmallIcon>
-            <FontAwesomeIcon icon={faWeightHanging} />
-          </SmallIcon>
-          <ProductInfo>{mileage}</ProductInfo>
-        </ProductDetail>
-
-        <ProductDetail>
-          <SmallIcon>
-            <FontAwesomeIcon icon={faTree} />
-          </SmallIcon>
-          <ProductInfo>{gearType}</ProductInfo>
-        </ProductDetail>
-
-        <ProductDetail>
-          <SmallIcon>
-            <FontAwesomeIcon icon={faFillDrip} />
-          </SmallIcon>
-          <ProductInfo>{gas}</ProductInfo>
-        </ProductDetail>
-      </ProductDetailContainer>
+      <ProductDetailContainer></ProductDetailContainer>
       <BuyButton text="Koupit"></BuyButton>
     </ProductContainer>
   );

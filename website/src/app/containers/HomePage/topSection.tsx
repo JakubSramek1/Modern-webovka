@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import tw from "twin.macro";
-
 import HoneyImg from "../../../assets/img/honey-big.png";
 import { SCREENS } from "../../components/responsive";
 import { Button } from "../../components/button";

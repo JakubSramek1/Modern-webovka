@@ -2,7 +2,7 @@ import { IHomePageState } from "./type";
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState: IHomePageState = {
-  topCars: [],
+  topProducts: [],
 };
 
 export const homePageSlice = createSlice({
@@ -10,7 +10,7 @@ export const homePageSlice = createSlice({
   initialState,
   reducers: {
     setTopProducts: (state, action) => {
-      state.topCars = action.payload;
+      state.topProducts = action.payload;
     },
   },
 });

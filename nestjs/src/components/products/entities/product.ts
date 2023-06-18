@@ -1,9 +1,9 @@
 import { Field, ObjectType } from '@nestjs/graphql';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ name: 'cars' })
+@Entity({ name: 'Products' })
 @ObjectType()
-export class Car {
+export class Product {
   @PrimaryGeneratedColumn('uuid')
   @Field()
   id: string;
@@ -14,25 +14,5 @@ export class Car {
 
   @Column()
   @Field()
-  dailyPrice: number;
-
-  @Column()
-  @Field()
   monthlyPrice: number;
-
-  @Column()
-  @Field()
-  mileage: string;
-
-  @Column()
-  @Field()
-  gas: string;
-
-  @Column()
-  @Field()
-  gearType: string;
-
-  @Column()
-  @Field()
-  thumbnailUrl: string;
 }

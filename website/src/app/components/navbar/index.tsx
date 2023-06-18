@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 import tw from "twin.macro";
 import { Logo } from "../logo";
@@ -22,7 +21,6 @@ export function Navbar() {
   return (
     <NavContainer>
       <Logo />
-
       <NavItems />
     </NavContainer>
   );

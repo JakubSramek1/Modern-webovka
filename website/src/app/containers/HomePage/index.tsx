@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 import tw from "twin.macro";
 import { Navbar } from "../../components/navbar";
@@ -6,7 +5,7 @@ import { Steps } from "./steps";
 import { TopSection } from "./topSection";
 import { AboutUs } from "./aboutUs";
 import { Marginer } from "../../components/marginer/index";
-import { TopCars } from "./topProducts";
+import { TopProducts } from "./topProducts";
 import { Footer } from "../../components/footer";
 
 const PageContainer = styled.div`
@@ -29,7 +28,7 @@ export function HomePage() {
       <Marginer direction="vertical" margin="8em" />
       <AboutUs />
       <Marginer direction="vertical" margin="8em" />
-      <TopCars />
+      <TopProducts />
       <Footer />
     </PageContainer>
   );
